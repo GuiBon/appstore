@@ -22,6 +22,7 @@
     "client/node_modules"
   ],
   "dependencies": {
+    "react-instantsearch": "^4.1.3",
     "react-notifications": "^1.4.3"
   }
 }

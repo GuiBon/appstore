@@ -95,7 +95,7 @@ export default class Home extends React.Component {
                 Create an App
               </button>
               <button name='searchButton' onClick={this.handleHideShow}>
-                Search an App
+                Search Apps
               </button>
             </div>
           :

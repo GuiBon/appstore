@@ -15,5 +15,8 @@ class App < ActiveRecord::Base
 
     searchableAttributes ['name']
     customRanking ['desc(rating)']
+    attributesForFaceting ['genres']
+    hitsPerPage 25
+    maxValuesPerFacet 1000
   end
 end
