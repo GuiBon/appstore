@@ -13,8 +13,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks'
 
 # Use react on rails
-gem 'react_on_rails', "~> 6"
+gem 'react_on_rails', '~> 6'
 gem 'mini_racer', platforms: :ruby
+
+# Use rubocop
+gem 'rubocop', '~> 0.49.1', require: false
 
 group :production do
   gem 'rails_12factor'
