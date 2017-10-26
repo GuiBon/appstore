@@ -20,5 +20,8 @@
   "cacheDirectories": [
     "node_modules",
     "client/node_modules"
-  ]
+  ],
+  "dependencies": {
+    "react-notifications": "^1.4.3"
+  }
 }

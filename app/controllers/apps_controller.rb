@@ -11,8 +11,15 @@ class AppsController < ApplicationController
       app.genres << genre
     end
 
-    app.save
-    app.id
+    respond_to do |format|
+      msg = if app.save
+              { status: 200, message: app.id.to_s }
+            else
+              { status: 400, message: 'Error while creating the App' }
+            end
+      p msg
+      format.json { render json: msg }
+    end
   end
 
   def update
