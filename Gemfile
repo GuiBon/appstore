@@ -19,6 +19,9 @@ gem 'mini_racer', platforms: :ruby
 # Use rubocop
 gem 'rubocop', '~> 0.49.1', require: false
 
+# Use Algolia
+gem 'algoliasearch-rails', '~> 1.20.1'
+
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'

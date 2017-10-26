@@ -38,6 +38,12 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    algoliasearch (1.14.0)
+      httpclient (~> 2.8.3)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.20.1)
+      algoliasearch (~> 1.14.0)
+      json (>= 1.5.1)
     arel (6.0.4)
     ast (2.3.0)
     binding_of_caller (0.7.2)
@@ -52,6 +58,7 @@ GEM
     execjs (2.7.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    httpclient (2.8.3)
     i18n (0.7.0)
     json (1.8.6)
     kgio (2.11.0)
@@ -173,6 +180,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  algoliasearch-rails (~> 1.20.1)
   byebug
   mini_racer
   pg
