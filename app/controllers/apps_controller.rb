@@ -6,7 +6,7 @@ class AppsController < ApplicationController
   def create
     app = App.new(app_params)
 
-    genre_params.each do |genre|
+    genre_params[:genres].each do |genre|
       genre = Genre.exists?(title: genre) ? Genre.find_by(title: genre) : Genre.create!(title: genre)
       app.genres << genre
     end
@@ -17,7 +17,6 @@ class AppsController < ApplicationController
             else
               { status: 400, message: 'Error while creating the App' }
             end
-      p msg
       format.json { render json: msg }
     end
   end
@@ -46,6 +45,6 @@ class AppsController < ApplicationController
   end
 
   def genre_params
-    params.require(:app).permit(:genres)
+    params.require(:app).permit(genres: [])
   end
 end

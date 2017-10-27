@@ -1,19 +1,21 @@
 import React from 'react';
 
 export default class Create extends React.Component {
-
   constructor(props, _railsContext) {
     super(props);
 
     this.state = { 
       name: '',
       price: 0,
+      selectedGenres: [],
       rating: 0,
       link: '',
       image: '',
+      genres: props.genres
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBack = this.handleBack.bind(this);
   }
@@ -32,11 +34,26 @@ export default class Create extends React.Component {
     });
   }
 
+  handleGenreChange(event) {
+    const options = event.target.options;
+    let genres = []
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        genres.push(options[i].value);
+      }
+    }
+
+    this.setState({
+      selectedGenres: genres
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
     const data = {
       name: this.state.name,
+      genres: this.state.selectedGenres,
       price: this.state.price,
       rating: this.state.rating,
       link: this.state.link,
@@ -72,6 +89,12 @@ export default class Create extends React.Component {
                 type='text' 
                 value={this.state.name} 
                 onChange={this.handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Genres:
+              <select multiple={true} onChange={this.handleGenreChange}>{this.state.genres.map((g) => { return <option>{g}</option> }) }</select>
             </label>
           </div>
           <div>

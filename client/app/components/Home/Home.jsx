@@ -9,6 +9,7 @@ import './Home.scss';
 export default class Home extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired, // this is passed from the Rails view
+    genres: PropTypes.array.isRequired
   };
 
   /**
@@ -22,12 +23,15 @@ export default class Home extends React.Component {
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     this.state = { 
       title: this.props.title,
+      genres: this.props.genres,
       menuVisible: true,
       createVisible: false,
       searchVisible: false,
       successRequestResponse: '',
       errorRequestResponse: ''
     };
+
+    console.log(this.props.genres)
 
     this.handleHideShow = this.handleHideShow.bind(this);
     this.onBackButtonHitted = this.onBackButtonHitted.bind(this);
@@ -102,7 +106,7 @@ export default class Home extends React.Component {
             null
         }
         {
-          this.state.createVisible ? <Create callbackResponse={(action, data) => this.onRequestResponse(action, data)} callbackHome={this.onBackButtonHitted} /> : null
+          this.state.createVisible ? <Create callbackResponse={(action, data) => this.onRequestResponse(action, data)} callbackHome={this.onBackButtonHitted} genres={this.state.genres} /> : null
         }
         {
           this.state.searchVisible ? <Search callbackResponse={(action, data) => this.onRequestResponse(action, data)} callbackHome={this.onBackButtonHitted} /> : null

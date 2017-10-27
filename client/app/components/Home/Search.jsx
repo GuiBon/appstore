@@ -47,7 +47,7 @@ export default class Search extends React.Component {
         </div>
         <InstantSearch
           appId='LZ6T2ZYQUS'
-          apiKey='29904776455766d4b76da48cf74f5161'
+          apiKey='46edf7593a0474c6207ba8d01c5f7ddd'
           indexName='App'
         >
         <CurrentRefinements/>
