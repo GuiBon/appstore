@@ -11,7 +11,13 @@ export default class Create extends React.Component {
       rating: 0,
       link: '',
       image: '',
-      genres: props.genres
+      genres: props.genres,
+      formErrors: {name: '', genres: '', price: '', rating: ''},
+      nameValid: true,
+      genresValid: true,
+      priceValid: true,
+      ratingValid: true,
+      formValid: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -50,21 +56,37 @@ export default class Create extends React.Component {
   }
 
   handleValidation() {
-    // Check name fields
-    if (this.state.name != '' && this.state.name != null &&
-        this.state.price >= 0 && this.state.price.isFloat() &&
-        this.state.rating >= 0 && this.state.rating <= 5 && this.state.rating.isFloat())
-    {
-      true
+    let nameValid = this.state.nameValid;
+    let genresValid = this.state.genresValid;
+    let priceValid = this.state.priceValid;
+    let ratingValid = this.state.ratingValid;
+
+    // Check name field
+    nameValid = (this.state.name === '' || this.state.name === null) ? false : true;
+    // Check genres field
+    genresValid = (this.state.genres.size === 0) ? false : true;
+    // Check price field
+    priceValid = (this.state.price < 0) ? false : true;
+    // Check rating field
+    ratingValid = (this.state.rating < 0 || this.state.rating > 5) ? false : true
+
+    this.setState({ nameValid: nameValid,
+                    genresValid: genresValid,
+                    priceValid: priceValid,
+                    ratingValid: ratingValid,
+                    formValid: nameValid && genresValid && priceValid && ratingValid});
+
+    if (this.state.formValid) {
+      return (true)
     } else {
-      false
+      return (false)
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    if (this.handleValidation) {
+    if (this.handleValidation()) {
       const data = {
         name: this.state.name,
         genres: this.state.selectedGenres,
@@ -104,12 +126,18 @@ export default class Create extends React.Component {
                 type='text' 
                 value={this.state.name} 
                 onChange={this.handleChange} />
+                {
+                  this.state.nameValid ? '' : <p>Name must not be blank</p>
+                }
             </label>
           </div>
           <div>
             <label>
               Genres:
               <select multiple={true} onChange={this.handleGenreChange}>{this.state.genres.map((g) => { return <option>{g}</option> }) }</select>
+              {
+                this.state.genresValid ? '' : <p>At least one genres needed</p>
+              }
             </label>
           </div>
           <div>
@@ -120,6 +148,9 @@ export default class Create extends React.Component {
                 type='float'
                 value={this.state.price}
                 onChange={this.handleChange} />
+              {
+                this.state.priceValid ? '' : <p>Price must be a number superior to 0</p>
+              }
             </label>
           </div>
           <div>
@@ -130,6 +161,9 @@ export default class Create extends React.Component {
                 type='float'
                 value={this.state.rating}
                 onChange={this.handleChange} />
+              {
+                this.state.ratingValid ? '' : <p>Rating must be a number between 0 and 5</p>
+              }                
             </label>
           </div>
           <div>

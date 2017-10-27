@@ -49,7 +49,6 @@ export default class Search extends React.Component {
   }
 
   deleteApp(objectID, event) {
-    console.log(`/api/1/apps/${objectID}`)
     $.ajax({
       url: `/api/1/apps/${objectID}`,
       type: 'DELETE',

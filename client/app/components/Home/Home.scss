@@ -1,6 +1,27 @@
 // The variables here are defined in
 // client/app/assets/styles/app-variables.scss
 
+.maintitle {
+	background-color: $mainColor;
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font: 2em 'Open Sans', sans-serif;
+}
+
 h3 {
+  font: 1em 'Open Sans', sans-serif;
+  color: $mainColor;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  font-size: 50px;
+  text-align: center;
+}
+
+.buttons button {
+	padding: 50px 66px;
+	font-size: 25px !important;
+  font: 1em 'Open Sans', sans-serif;
   color: $mainColor;
 }

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, ButtonToolbar, Button} from 'react-bootstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Create from './Create.jsx'
 import Search from './Search.jsx'
 
-import './Home.scss';
+import style from './Home.scss';
 
 export default class Home extends React.Component {
   static propTypes = {
@@ -31,15 +31,11 @@ export default class Home extends React.Component {
       errorRequestResponse: ''
     };
 
-    console.log(this.props.genres)
-
     this.handleHideShow = this.handleHideShow.bind(this);
     this.onBackButtonHitted = this.onBackButtonHitted.bind(this);
   }
 
   onRequestResponse(action, data) {
-    console.log('onRequestResponse')
-    console.log(data)
     if (data.status == 200) {
       NotificationManager.success(`App ${action} with success`, 'Success', 3000);
     } else {
@@ -82,25 +78,31 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <Grid>
-          <Row>
-            <Col xs={6} xsOffset={3}>
-              <h3>
-                {this.state.title}
-              </h3>
-            </Col>
-          </Row>
-        </Grid>
-
+        <div className={style.maintitle}>
+          <h1>Custom App Store</h1>
+        </div>
         {
           this.state.menuVisible ?
             <div>
-              <button name='createButton' onClick={this.handleHideShow}>
-                Create an App
-              </button>
-              <button name='searchButton' onClick={this.handleHideShow}>
-                Search Apps
-              </button>
+              <h3>
+                {this.state.title}
+              </h3>
+              <Grid>
+                <Row className={style.buttons}>
+                  <ButtonToolbar>
+                    <Col xs={8}>
+                      <Button name='createButton' onClick={this.handleHideShow} bsSize='large'>
+                        Create an App
+                      </Button>
+                    </Col>
+                    <Col xs={4}>
+                      <Button name='searchButton' onClick={this.handleHideShow} bsSize='large'>
+                        Search Apps
+                      </Button>
+                    </Col>
+                  </ButtonToolbar>
+                </Row>
+              </Grid>
             </div>
           :
             null
