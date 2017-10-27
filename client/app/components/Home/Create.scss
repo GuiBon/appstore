@@ -1,0 +1,38 @@
+// The variables here are defined in
+// client/app/assets/styles/app-variables.scss
+
+.backButton button {
+	margin-top: 25px;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: right !important;
+  color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+}
+
+.submitButton button {
+	margin-left: 48% !important;
+  padding: 10px 24px;
+  font-size: 20px;
+}
+
+form {
+	text-align: center;
+}
+
+form div {
+	margin-bottom: 10px;
+}
+
+label input {
+	margin-left: 5px;
+}
+
+label select {
+	margin-left: 5px;
+}
+
+p {
+	color: red;
+}

@@ -1,4 +1,7 @@
 import React from 'react';
+import {Grid, Row, Col, ButtonToolbar, Button} from 'react-bootstrap';
+
+import style from './Create.scss'
 
 export default class Create extends React.Component {
   constructor(props, _railsContext) {
@@ -64,7 +67,7 @@ export default class Create extends React.Component {
     // Check name field
     nameValid = (this.state.name === '' || this.state.name === null) ? false : true;
     // Check genres field
-    genresValid = (this.state.genres.size === 0) ? false : true;
+    genresValid = (this.state.selectedGenres.length === 0) ? false : true;
     // Check price field
     priceValid = (this.state.price < 0) ? false : true;
     // Check rating field
@@ -114,9 +117,11 @@ export default class Create extends React.Component {
   render() {
     return (
       <div>
-        <button name='backButton' onClick={this.handleBack}>
-          Back
-        </button>
+        <ButtonToolbar className={style.backButton}>
+          <Button name='backButton' onClick={this.handleBack} bsStyle='primary'>
+            Back
+          </Button>
+        </ButtonToolbar>
         <form>
           <div>
             <label>
@@ -186,12 +191,14 @@ export default class Create extends React.Component {
                 onChange={this.handleChange} />
             </label>
           </div>
-          <div>
-            <input 
+          <ButtonToolbar className={style.submitButton}>
+            <Button 
               type='submit'
-              value='Submit'
-              onClick={this.handleSubmit} />
-          </div>
+              onClick={this.handleSubmit}
+              bsStyle='success' >
+              Submit
+            </Button>
+          </ButtonToolbar>
         </form>
       </div>
     );
