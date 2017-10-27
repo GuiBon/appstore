@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include AlgoliaSearch
+
   def index
     hits = Genre.search('')
     genres = []
