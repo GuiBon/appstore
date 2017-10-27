@@ -1,6 +1,21 @@
 // The variables here are defined in
 // client/app/assets/styles/app-variables.scss
 
+.backButton button {
+	margin-top: 25px;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: right !important;
+  color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+}
+
 .hit {
-  marginTop: 10px;
+	border: 1px solid $mainColor;
+  padding: 5px;
+}
+
+.btn-toolbar {
+	float: right !important;
 }
