@@ -17,6 +17,7 @@ export default class Create extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleValidation = this.handleValidation.bind(this);
     this.handleBack = this.handleBack.bind(this);
   }
 
@@ -48,30 +49,44 @@ export default class Create extends React.Component {
     })
   }
 
+  handleValidation() {
+    // Check name fields
+    if (this.state.name != '' && this.state.name != null &&
+        this.state.price >= 0 && this.state.price.isFloat() &&
+        this.state.rating >= 0 && this.state.rating <= 5 && this.state.rating.isFloat())
+    {
+      true
+    } else {
+      false
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
-    const data = {
-      name: this.state.name,
-      genres: this.state.selectedGenres,
-      price: this.state.price,
-      rating: this.state.rating,
-      link: this.state.link,
-      image: this.state.image
-    }
-
-    $.ajax({
-      url: '/api/1/apps',
-      type: 'POST',
-      data: { app: data },
-      context: this,
-      success: function(data) { 
-        this.props.callbackResponse('created', data)
-      },
-      error: function(data) { 
-        this.props.callbackResponse('created', data)
+    if (this.handleValidation) {
+      const data = {
+        name: this.state.name,
+        genres: this.state.selectedGenres,
+        price: this.state.price,
+        rating: this.state.rating,
+        link: this.state.link,
+        image: this.state.image
       }
-    });
+  
+      $.ajax({
+        url: '/api/1/apps',
+        type: 'POST',
+        data: { app: data },
+        context: this,
+        success: function(data) { 
+          this.props.callbackResponse('created', data)
+        },
+        error: function(data) { 
+          this.props.callbackResponse('created', data)
+        }
+      });
+    }
   }
 
   render() {

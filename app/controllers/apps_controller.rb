@@ -22,22 +22,36 @@ class AppsController < ApplicationController
   end
 
   def update
-    @app.udpate(app_params)
-
     genre_params.each do |genre|
       genre = Genre.exists?(title: genre) ? Genre.find_by(title: genre) : Genre.create!(title: genre)
       @app.genres << genre unless @app.genres.pluck(:title).include? genre
     end
+
+    respond_to do |format|
+      msg = if @app.update(app_params)
+              { status: 200, message: @app.id.to_s }
+            else
+              { status: 400, message: 'Error while updating the App' }
+            end
+      format.json { render json: msg }
+    end
   end
 
   def destroy
-    @app.destroy
+    respond_to do |format|
+      msg = if @app.destroy
+              { status: 200, message: 'App destroyed' }
+            else
+              { status: 400, message: 'Error while destroying the App' }
+            end
+      format.json { render json: msg }
+    end
   end
 
   private
 
   def set_app
-    @app = App.find_by(params[:id])
+    @app = App.find(params[:id])
   end
 
   def app_params
