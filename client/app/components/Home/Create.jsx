@@ -67,7 +67,7 @@ export default class Create extends React.Component {
     // Check name field
     nameValid = (this.state.name === '' || this.state.name === null) ? false : true;
     // Check genres field
-    genresValid = (this.state.selectedGenres.length === 0) ? false : true;
+    genresValid = (this.state.selectedGenres.length === 0) ? true : true; // Disable at the moment because of the error on Heroku
     // Check price field
     priceValid = (this.state.price < 0) ? false : true;
     // Check rating field
